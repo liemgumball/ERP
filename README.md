@@ -1,11 +1,7 @@
-# React-training
+# ERP
 
--   Dev: Liem Nguyen
--   Email: liem1762001@gmail.com
--   Github: [liemgumball](https://github.com/liemgumball)
+-   Dev: Liem Nguyen, Hoang Ngo, Le Hoang
 
-## Develop Environment:
+## Develop Technical:
 
--   [Visual Studio Code](https://code.visualstudio.com/)
--   [Github](https://github.com/)
 -   React & TypeScript
