@@ -34,8 +34,8 @@ const router = createBrowserRouter([
     Component: lazy(() => import('@pages/LoginPage')),
   },
   {
-    path: PATH_NAME.RESET_PASSWORD,
-    Component: lazy(() => import('@pages/EmptyPage')),
+    path: '/register',
+    Component: lazy(() => import('@pages/RegisterPage')),
   },
 ]);
 
