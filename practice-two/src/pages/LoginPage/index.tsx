@@ -32,11 +32,8 @@ const LoginPage = () => {
         <LoginForm />
         <p className="text-center text-custom-dark-gray">
           Forgot your password?{' '}
-          <Link
-            className="text-custom-yellow underline"
-            to={PATH_NAME.RESET_PASSWORD}
-          >
-            Reset Password
+          <Link className="text-custom-yellow underline" to="/register">
+            Register
           </Link>
         </p>
       </main>
