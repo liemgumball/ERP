@@ -9,7 +9,8 @@ type PaymentListItemProps = {
 };
 
 const PaymentListItem = ({ payment }: PaymentListItemProps) => {
-  const { id, student, billNumber, paid, balance, createdAt } = payment;
+  const { id, student, billNumber, paid, paidAmount, balance, createdAt } =
+    payment;
 
   const viewDetailClick = () => {
     alert(NOTIFIES_MSG.FUTURE_FEATURE);
@@ -18,9 +19,9 @@ const PaymentListItem = ({ payment }: PaymentListItemProps) => {
   return (
     <li data-id={id} className="payment-list-item relative group">
       <p className="truncate">{student?.name}</p>
-      <p className="truncate">first</p>
+      <p className="truncate">{paid ? 'Paid' : 'Not yet'}</p>
       <p className="truncate">{billNumber}</p>
-      <p className="truncate uppercase">inr {formatAmount(paid)}</p>
+      <p className="truncate uppercase">inr {formatAmount(paidAmount)}</p>
       <p className="truncate uppercase">inr {formatAmount(balance)}</p>
       <p className="truncate">{formatDate(createdAt)}</p>
       <div className="action-group flex gap-x-2 justify-end">

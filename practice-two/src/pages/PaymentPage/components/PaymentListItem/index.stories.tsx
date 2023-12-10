@@ -20,6 +20,7 @@ const data = {
   billNumber: 832734803,
   paid: 436135112,
   balance: 704937932,
+  status: 'Completed',
   id: 1,
   student: {
     createdAt: '2023-09-07T23:25:31.357Z',

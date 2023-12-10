@@ -31,7 +31,7 @@ const LoginPage = () => {
         </div>
         <LoginForm />
         <p className="text-center text-custom-dark-gray">
-          Forgot your password?{' '}
+          Don't have an account?{' '}
           <Link className="text-custom-yellow underline" to="/register">
             Register
           </Link>

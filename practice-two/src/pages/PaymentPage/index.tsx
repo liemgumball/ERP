@@ -26,7 +26,7 @@ const PaymentPage = () => {
       <div className="payments py-3">
         <div className="payment-list-heading grid text-custom-medium-gray font-600 whitespace-nowrap">
           <span>name</span>
-          <span>payment schedule</span>
+          <span>paid</span>
           <span>bill number</span>
           <span>amount paid</span>
           <span>balance amount</span>
@@ -43,7 +43,8 @@ const PaymentPage = () => {
               ) : (
                 <p className="text-custom-dark-gray text-center">not found</p>
               ),
-            [payments]
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            [payments?.length]
           )}
         </List>
       </div>
