@@ -29,8 +29,8 @@
   column-gap: 15px;
   padding: 1.25rem 1rem;
   grid-template-columns:
-    [first]minmax(150px, 3fr)
-    [var1]minmax(170px, 3fr)
+    [first]minmax(200px, 3fr)
+    [var1]minmax(80px, 2fr)
     [var2]minmax(100px, 3fr)
     [var3]minmax(120px, 3fr)
     [var4]minmax(150px, 3fr)

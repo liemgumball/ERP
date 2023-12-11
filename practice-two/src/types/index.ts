@@ -11,10 +11,12 @@ export type TStudent = {
 export type TPayment = {
   createdAt: string;
   billNumber: number;
-  paid: number;
+  paidAmount: number;
+  paid: boolean;
   balance: number;
   studentId: number;
   id: number;
+  status: string;
   student?: TStudent;
 };
 

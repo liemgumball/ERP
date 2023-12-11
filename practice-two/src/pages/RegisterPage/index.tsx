@@ -2,7 +2,9 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import { ERROR_MSG } from '@constants/messages';
 import { emailRegex, nameRegex, phoneNumberRegex } from '@constants/regex';
+import { PATH_NAME } from '@constants/services';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { StudentInputs } from 'src/types';
 
 type FormInputs = Omit<StudentInputs, 'id'>;
@@ -109,6 +111,17 @@ const RegisterPage = () => {
         >
           {errors.root ? 'retry' : isSubmitting ? 'submitting...' : 'done'}
         </Button>
+
+        {/* <Button
+          type="button"
+        > */}
+        <Link
+          to={PATH_NAME.LOGIN}
+          className="border rounded-lg text-center p-3 mt-3 w-1/2 justify-self-center uppercase text-md hover:shadow-lg"
+        >
+          Back
+        </Link>
+        {/* </Button> */}
 
         {errors.root && (
           <p

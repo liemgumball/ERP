@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { SearchQueryContext } from '@contexts/SearchQuery';
 import useDebounce from '@hooks/useDebounce';
 import List from '@components/List';
 import PaymentListItem from './components/PaymentListItem';
 import usePaymentQuery from './hooks/usePaymentQuery';
+import { useSearchParams } from 'react-router-dom';
+import { useMemo } from 'react';
 
 const PaymentPage = () => {
   // Debounce the search query change
-  const { searchQuery } = useContext(SearchQueryContext);
-  const debouncedSearchQuery = useDebounce(searchQuery);
+  const [searchParams] = useSearchParams({ q: '' });
+  const debouncedSearchQuery = useDebounce(searchParams.get('q') || '');
 
   // Get payments
   const query = `?_expand=student&?_sort=createdAt&_order=desc&q=${debouncedSearchQuery}`;
@@ -26,7 +26,7 @@ const PaymentPage = () => {
       <div className="payments py-3">
         <div className="payment-list-heading grid text-custom-medium-gray font-600 whitespace-nowrap">
           <span>name</span>
-          <span>payment schedule</span>
+          <span>paid</span>
           <span>bill number</span>
           <span>amount paid</span>
           <span>balance amount</span>
@@ -34,12 +34,17 @@ const PaymentPage = () => {
           <span></span>
         </div>
         <List isError={isError} isLoading={isLoading} error={error as Error}>
-          {payments && payments.length ? (
-            payments.map((item) => (
-              <PaymentListItem key={item.id} payment={item} />
-            ))
-          ) : (
-            <p className="text-custom-dark-gray text-center">not found</p>
+          {useMemo(
+            () =>
+              payments?.length ? (
+                payments.map((item) => (
+                  <PaymentListItem key={item.id} payment={item} />
+                ))
+              ) : (
+                <p className="text-custom-dark-gray text-center">not found</p>
+              ),
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            [payments?.length]
           )}
         </List>
       </div>
