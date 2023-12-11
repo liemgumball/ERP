@@ -20,7 +20,7 @@ const DashBoardCard: React.FC<DashBoardCardProps> = (props) => {
     >
       {children}
       <p className="text mt-2 capitalize">{name}</p>
-      <p className="text-4xl mt-3 text-black font-700 text-end uppercase truncate">
+      <p className="mt-3 truncate text-end text-4xl font-700 uppercase text-black">
         {mainInfo}
       </p>
     </Link>
