@@ -12,6 +12,7 @@ import api from '@services/api-request';
 import { STUDENTS_URL } from '@constants/services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import useAuth from '@hooks/useAuth';
 
 type StudentListItemProps = {
   student: TStudent;
@@ -24,6 +25,7 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
 }) => {
   const { avatar, createdAt, email, enrollNumber, id, name, phone } = student;
 
+  const {auth} = useAuth()
   const [isFetching, setIsFetching] = useState(false);
 
   const { removeStudent } = useStudentRemoving();
@@ -35,7 +37,7 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
   const onClickEdit = async () => {
     setIsFetching(true);
 
-    const student = (await api.get(STUDENTS_URL + '/' + id)) as StudentInputs;
+    const student = (await api.get(STUDENTS_URL + '/' + id, auth?.accessToken)) as StudentInputs;
     if (student) setIsFetching(false);
 
     setStudentFormState({
