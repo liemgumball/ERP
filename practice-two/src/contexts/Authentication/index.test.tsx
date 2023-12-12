@@ -1,5 +1,5 @@
 import { render, act, waitFor } from '@testing-library/react';
-import AuthProvider, { AuthContext } from '.';
+import AuthProvider, { AuthContext, AuthType } from '.';
 
 describe('AuthContext', () => {
   it('provides default values', () => {
@@ -30,11 +30,12 @@ describe('AuthContext', () => {
               value.setAuth({
                 accessToken: 'test-token',
                 user: {
+                  role: 'test',
                   email: 'test@example.com',
                   name: 'Test User',
                   id: 1,
                 },
-              });
+              } as AuthType);
             });
 
             waitFor(() => {
@@ -58,11 +59,12 @@ describe('AuthContext', () => {
               const updatedAuth = {
                 accessToken: 'new-test-token',
                 user: {
+                  role: 'test',
                   email: 'new-test@example.com',
                   name: 'New Test User',
                   id: 2,
                 },
-              };
+              } as AuthType;
 
               act(() => {
                 value.setAuth(updatedAuth);
