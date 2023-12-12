@@ -57,22 +57,22 @@ const Sidebar: React.FC = () => {
 
   return (
     <aside className="sidebar">
-      <Link to={PATH_NAME.HOME} className="flex justify-center items-center">
+      <Link to={PATH_NAME.HOME} className="flex items-center justify-center">
         <img width="7" src={smallLogo} alt="Logo" />
-        <p className="ml-3 text-xl uppercase font-700">CRUD operations</p>
+        <p className="ml-3 text-xl font-700 uppercase">CRUD operations</p>
       </Link>
       <div className="flex flex-col items-center gap-y-2">
-        <div className="w-32 h-32">
+        <div className="h-32 w-32">
           <img
             width="128"
             height="128"
             src={avatar}
             alt="avatar"
-            className="rounded-full w-full h-full"
+            className="h-full w-full rounded-full"
           />
         </div>
-        <h2 className="font-700 text-xl">{auth?.user.name}</h2>
-        <p className="text-custom-yellow">Admin</p>
+        <h2 className="text-xl font-700">{auth?.user.name}</h2>
+        <p className="text-custom-yellow">{auth?.user.role || 'user'}</p>
       </div>
       <nav className="p-5">
         <ul>
@@ -89,11 +89,11 @@ const Sidebar: React.FC = () => {
       </nav>
 
       <Button
-        className="capitalize hover:bg-custom-gray mx-5 border-none"
+        className="mx-5 border-none capitalize hover:bg-custom-gray"
         onClick={handleLogout}
       >
         logout
-        <img src={signOut} alt="sign out" className="inline-block ml-3" />
+        <img src={signOut} alt="sign out" className="ml-3 inline-block" />
       </Button>
     </aside>
   );
