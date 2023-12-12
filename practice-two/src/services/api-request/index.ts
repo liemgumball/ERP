@@ -22,6 +22,9 @@ const request = async <T, TData>(
     return (await response.json()) as TData;
   } catch (err) {
     console.error('An error occurred in request:', err);
+
+    if((err as Error).message === '403') throw new Error("Permission denied");
+
     throw err as Error;
   }
 };
