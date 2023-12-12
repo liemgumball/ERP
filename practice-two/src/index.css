@@ -38,6 +38,17 @@
     [last]50px;
 }
 
+.report-list-item,
+.report-list-heading {
+  column-gap: 15px;
+  padding: 1.25rem 1rem;
+  grid-template-columns:
+    [first]minmax(200px, 1fr)
+    [var1]minmax(150px, 1fr)
+    [var2]minmax(130px, 3fr)
+    [last]50px;
+}
+
 /* Hide scrollbar for all elements */
 .sidebar::-webkit-scrollbar {
   display: none; /* Hide scrollbar for Webkit-based browsers (e.g., Chrome, Safari) */
@@ -45,6 +56,7 @@
 }
 
 .student-list-item,
+.report-list-item,
 .payment-list-item {
   @apply my-2 grid border rounded-xl items-center hover:bg-custom-beige font-400 transition;
 }
