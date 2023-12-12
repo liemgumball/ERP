@@ -13,8 +13,11 @@ import SortOption from '@components/SortOption';
 import StudentListItem from './components/StudentListItem';
 import StudentForm from './components/StudentForm';
 import { useSearchParams } from 'react-router-dom';
+import useAuth from '@hooks/useAuth';
 
 const StudentPage: React.FC = () => {
+  const {auth} = useAuth()
+  
   // Student form reducer
   const [formState, dispatch] = useStudentForm();
 
@@ -59,6 +62,7 @@ const StudentPage: React.FC = () => {
             <Button
               className="uppercase"
               primary
+              disabled={auth?.user.role !== 'admin'}
               onClick={() => dispatch({ status: 'adding' })}
             >
               add new student
