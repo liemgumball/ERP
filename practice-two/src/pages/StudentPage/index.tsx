@@ -13,8 +13,11 @@ import SortOption from '@components/SortOption';
 import StudentListItem from './components/StudentListItem';
 import StudentForm from './components/StudentForm';
 import { useSearchParams } from 'react-router-dom';
+import useAuth from '@hooks/useAuth';
 
 const StudentPage: React.FC = () => {
+  const { auth } = useAuth();
+
   // Student form reducer
   const [formState, dispatch] = useStudentForm();
 
@@ -41,8 +44,8 @@ const StudentPage: React.FC = () => {
 
   return (
     <Profiler id="student-page" onRender={profilerRender}>
-      <article className="px-8 min-w-min">
-        <header className="py-3 flex justify-between items-center bg-white border-b">
+      <article className="min-w-min px-8">
+        <header className="flex items-center justify-between border-b bg-white py-3">
           <h1 className="text-3xl font-700">students list</h1>
           <span className="action-bar flex gap-5">
             <SortMenu>
@@ -59,6 +62,7 @@ const StudentPage: React.FC = () => {
             <Button
               className="uppercase"
               primary
+              disabled={auth?.user.role !== 'admin'}
               onClick={() => dispatch({ status: 'adding' })}
             >
               add new student
@@ -69,7 +73,7 @@ const StudentPage: React.FC = () => {
         <hr />
 
         <section className="students py-3">
-          <header className="student-list-heading grid text-custom-medium-gray font-600 whitespace-nowrap">
+          <header className="student-list-heading grid whitespace-nowrap font-600 text-custom-medium-gray">
             <span />
             <span>name</span>
             <span>email</span>
@@ -91,10 +95,10 @@ const StudentPage: React.FC = () => {
                     />
                   ))
                 ) : (
-                  <p className="text-custom-dark-gray text-center">not found</p>
+                  <p className="text-center text-custom-dark-gray">not found</p>
                 ),
               // eslint-disable-next-line react-hooks/exhaustive-deps
-              [students?.length, sortQuery]
+              [students, sortQuery]
             )}
           </List>
         </section>

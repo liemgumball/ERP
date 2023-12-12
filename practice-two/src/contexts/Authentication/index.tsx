@@ -4,6 +4,7 @@ import useLocalStorage from '@hooks/useLocalStorage';
 export type AuthType = {
   accessToken: string;
   user: {
+    role: string;
     email: string;
     name: string;
     id: number;

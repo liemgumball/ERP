@@ -13,6 +13,7 @@ import {
 } from '@constants/regex';
 import { StudentInputs } from 'src/types';
 import { StudentFormAction } from '@pages/StudentPage/hooks/useStudentForm';
+import useAuth from '@hooks/useAuth';
 
 export type StudentFormProps = {
   title?: 'add' | 'edit';
@@ -24,6 +25,7 @@ type FormInputs = Omit<StudentInputs, 'id'>;
 
 const StudentForm: React.FC<StudentFormProps> = (props: StudentFormProps) => {
   const { title, setFormState, student } = props;
+  const {auth} = useAuth()
 
   // Hook form
   const {
@@ -36,7 +38,7 @@ const StudentForm: React.FC<StudentFormProps> = (props: StudentFormProps) => {
   // Mutations
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
-    mutationFn: saveStudent,
+    mutationFn: (inputData: StudentInputs) => saveStudent(inputData,auth?.accessToken),
     onSuccess: () => {
       setFormState({ status: 'closed' }); // close form
       // Invalidate and refetch students list
@@ -54,7 +56,7 @@ const StudentForm: React.FC<StudentFormProps> = (props: StudentFormProps) => {
   const onValid: SubmitHandler<FormInputs> = async (data) => {
     // Use async mutation here to make it's a promise
     // And use `await` so the isSubmitting variable of hook-form can be shown
-    await mutateAsync({ ...data, id: student?.id } as StudentInputs);
+    await mutateAsync({ ...data, id: student?.id, userId: auth?.user.id } as StudentInputs);
   };
 
   return (
