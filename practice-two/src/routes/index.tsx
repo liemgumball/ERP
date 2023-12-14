@@ -25,6 +25,10 @@ const router = createBrowserRouter([
             path: '/*',
             Component: lazy(() => import('@pages/EmptyPage')),
           },
+          {
+            path: PATH_NAME.COURSES,
+            Component: lazy(()=> import('@pages/CoursesPage'))
+          }
         ],
       },
     ],

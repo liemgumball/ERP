@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 import { Link, To } from 'react-router-dom';
 
 export type DashBoardCardProps = {
-  variant: 'primary' | 'secondary' | 'thirdly' | 'fourthly';
+  variant: 'primary' | 'secondary' | 'thirdly' | 'fourthly'| 'fifthly'| 'sixthly' | 'seventhly' | 'eighthly';
   name: string;
   mainInfo?: string;
   to: To;
