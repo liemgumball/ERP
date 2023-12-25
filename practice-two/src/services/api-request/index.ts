@@ -4,13 +4,13 @@ const request = async <T, TData>(
   path: string,
   method: ApiMethod,
   accessToken?: string,
-  body?: T,
+  body?: T
 ): Promise<TData> => {
   try {
     const response = await fetch(path, {
       method: method,
       headers: {
-        'Authorization': 'Bearer ' + accessToken,
+        Authorization: 'Bearer ' + accessToken,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
@@ -23,7 +23,9 @@ const request = async <T, TData>(
   } catch (err) {
     console.error('An error occurred in request:', err);
 
-    if((err as Error).message === '403') throw new Error("Permission denied");
+    if ((err as Error).message === '403') throw new Error('Permission denied');
+
+    if ((err as Error).message === '401') throw new Error('Unauthorized');
 
     throw err as Error;
   }
