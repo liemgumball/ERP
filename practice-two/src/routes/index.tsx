@@ -22,6 +22,10 @@ const router = createBrowserRouter([
             Component: lazy(() => import('@pages/PaymentPage')),
           },
           {
+            path: PATH_NAME.REPORTS,
+            Component: lazy(() => import('@pages/ReportPage')),
+          },
+          {
             path: '/*',
             Component: lazy(() => import('@pages/EmptyPage')),
           },

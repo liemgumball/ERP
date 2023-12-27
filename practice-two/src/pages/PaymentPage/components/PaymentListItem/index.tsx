@@ -19,7 +19,7 @@ const PaymentListItem = ({ payment }: PaymentListItemProps) => {
   return (
     <li data-id={id} className="payment-list-item relative group">
       <p className="truncate">{student?.name}</p>
-      <p className="truncate">{paid ? 'Paid' : 'Not yet'}</p>
+      <p className="truncate normal-case">{paid ? 'Paid' : 'Not yet'}</p>
       <p className="truncate">{billNumber}</p>
       <p className="truncate uppercase">inr {formatAmount(paidAmount)}</p>
       <p className="truncate uppercase">inr {formatAmount(balance)}</p>

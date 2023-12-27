@@ -3,6 +3,7 @@ export const DATABASE_RESOURCES = {
   STUDENTS: 'users/students',
   PAYMENTS: 'payments',
   COURSES: 'courses',
+  REPORTS: 'reports',
 };
 
 export const PATH_NAME = {
@@ -27,4 +28,8 @@ export const PAYMENTS_URL = `${import.meta.env.VITE_API_URL}/${
 
 export const COURSES_URL = `${import.meta.env.VITE_API_URL}/${
   DATABASE_RESOURCES.COURSES
+}`;
+
+export const REPORTS_URL = `${import.meta.env.VITE_API_URL}/${
+  DATABASE_RESOURCES.REPORTS
 }`;

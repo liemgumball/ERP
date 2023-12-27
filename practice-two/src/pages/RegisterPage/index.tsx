@@ -4,12 +4,14 @@ import { ERROR_MSG } from '@constants/messages';
 import { emailRegex, nameRegex, phoneNumberRegex } from '@constants/regex';
 import { PATH_NAME } from '@constants/services';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StudentInputs } from 'src/types';
 
-type FormInputs = Omit<StudentInputs, 'id'>;
+type FormInputs = Pick<StudentInputs, 'name' | 'email' | 'phone'>;
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
   // Hook form
   const {
     register,
@@ -18,12 +20,14 @@ const RegisterPage = () => {
   } = useForm<FormInputs>();
 
   return (
-    <main className="bg-custom-gradient-yellow h-screen flex items-center justify-center">
+    <main className="bg-custom-gradient-yellow flex h-screen items-center justify-center">
       <form
-        className="bg-white p-16 rounded-2xl shadow-lg max-w-xl w-full grid grid-cols-1 z-50"
-        onSubmit={handleSubmit(() => {})}
+        className="z-50 grid w-full max-w-xl grid-cols-1 rounded-2xl bg-white p-16 shadow-lg"
+        onSubmit={handleSubmit(() => {
+          navigate('/login', { replace: true });
+        })}
       >
-        <h2 className="text-3xl font-700 text-center mb-10 uppercase">
+        <h2 className="mb-10 text-center text-3xl font-700 uppercase">
           student information
         </h2>
 
@@ -47,13 +51,13 @@ const RegisterPage = () => {
         />
         {/* Error message */}
         {errors.name && (
-          <p className="text-red-500 text-xs" role="alert">
+          <p className="text-xs text-red-500" role="alert">
             {errors.name.message}
           </p>
         )}
 
         {/* Email input */}
-        <label className="text-custom-dark-gray mt-5" htmlFor="email">
+        <label className="mt-5 text-custom-dark-gray" htmlFor="email">
           Email{' '}
         </label>
         <Input
@@ -71,13 +75,13 @@ const RegisterPage = () => {
         />
         {/* Error message */}
         {errors.email && (
-          <p className="text-red-500 text-xs" role="alert">
+          <p className="text-xs text-red-500" role="alert">
             {errors.email.message}
           </p>
         )}
 
         {/* Phone input */}
-        <label className="text-custom-dark-gray mt-5" htmlFor="phone">
+        <label className="mt-5 text-custom-dark-gray" htmlFor="phone">
           Phone number{' '}
         </label>
         <Input
@@ -95,7 +99,7 @@ const RegisterPage = () => {
         />
         {/* Error message */}
         {errors.phone && (
-          <p className="text-red-500 text-xs" role="alert">
+          <p className="text-xs text-red-500" role="alert">
             {errors.phone.message}
           </p>
         )}
@@ -106,7 +110,7 @@ const RegisterPage = () => {
             (!errors.root && isSubmitting)
           }
           primary
-          className="mt-10 w-1/2 justify-self-center uppercase text-md"
+          className="text-md mt-10 w-1/2 justify-self-center uppercase"
           type="submit"
         >
           {errors.root ? 'retry' : isSubmitting ? 'submitting...' : 'done'}
@@ -117,7 +121,7 @@ const RegisterPage = () => {
         > */}
         <Link
           to={PATH_NAME.LOGIN}
-          className="border rounded-lg text-center p-3 mt-3 w-1/2 justify-self-center uppercase text-md hover:shadow-lg"
+          className="text-md mt-3 w-1/2 justify-self-center rounded-lg border p-3 text-center uppercase hover:shadow-lg"
         >
           Back
         </Link>
@@ -125,7 +129,7 @@ const RegisterPage = () => {
 
         {errors.root && (
           <p
-            className="text-red-500 text-sm text-center mt-1 transition-all delay-300"
+            className="mt-1 text-center text-sm text-red-500 transition-all delay-300"
             role="alert"
           >
             {errors.root.message}

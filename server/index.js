@@ -13,6 +13,13 @@ const middlewares = jsonServer.defaults({ logger: true });
 // Bind the router db to the app
 server.db = router.db;
 
+const rules = auth.rewriter({
+	// Permission rules
+	users: 600,
+	students: 640,
+	payments: 640,
+});
+server.use(rules);
 server.use(middlewares);
 server.use(auth);
 

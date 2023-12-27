@@ -6,6 +6,7 @@ export type TStudent = {
   phone: string;
   enrollNumber: number;
   id: number;
+  useId: number;
 };
 
 export type TPayment = {
@@ -28,7 +29,16 @@ export type TSCourse = {
   numberStudents: string;
 };
 
+export type TReport = {
+  id: number;
+  title: string;
+  content: string;
+  userId: number;
+  studentId: number;
+  student?: TStudent;
+};
+
 export type StudentInputs = Pick<
   TStudent,
-  'id' | 'email' | 'name' | 'phone' | 'enrollNumber'
+  'id' | 'email' | 'name' | 'phone' | 'enrollNumber' | 'useId'
 >;

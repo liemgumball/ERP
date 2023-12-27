@@ -11,7 +11,7 @@ const PaymentPage = () => {
   const debouncedSearchQuery = useDebounce(searchParams.get('q') || '');
 
   // Get payments
-  const query = `/?_sort=createdAt&_order=desc&name_like=${debouncedSearchQuery}`;
+  const query = `?_sort=createdAt&_order=desc&name_like=${debouncedSearchQuery}`;
 
   const { payments, isError, error, isLoading } = usePaymentQuery({
     query: query,
@@ -44,7 +44,7 @@ const PaymentPage = () => {
                 <p className="text-center text-custom-dark-gray">not found</p>
               ),
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            [payments?.length]
+            [payments]
           )}
         </List>
       </div>

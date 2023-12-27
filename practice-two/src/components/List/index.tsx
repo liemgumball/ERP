@@ -11,19 +11,19 @@ export type ListProps = {
 const List: React.FC<ListProps> = (props) => {
   const { isError, error, isLoading, onClick, children } = props;
 
-  // show error
-  if (isError)
-    return (
-      <p role="alert" className="text-red-500 text-center font-600">
-        {error?.message || 'Unexpected error'}
-      </p>
-    );
-
   // loading
   if (isLoading)
     return (
       <p className="text-custom-dark-gray text-center animate-bounce">
         Loading...
+      </p>
+    );
+
+  // show error
+  if (isError)
+    return (
+      <p role="alert" className="text-red-500 text-center font-600">
+        {error?.message || 'Unexpected error'}
       </p>
     );
 

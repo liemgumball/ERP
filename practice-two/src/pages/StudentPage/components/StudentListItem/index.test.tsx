@@ -1,6 +1,7 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import StudentListItem from '.';
 import api from '@services/api-request';
+import { TStudent } from 'src/types';
 
 // Mocking the useStudentRemoving hook
 vi.mock('@pages/StudentPage/hooks/useStudentRemoving', () => ({
@@ -16,7 +17,8 @@ const mockStudent = {
   id: 1,
   name: 'Mock Student',
   phone: '1234567890',
-};
+  useId: 1,
+} as TStudent
 
 describe('StudentListItem component', () => {
   const mockApiGet = vi.spyOn(api, 'get');
