@@ -3,11 +3,34 @@ import flaskSolid from '@assets/flaskSolid.svg';
 import atomSolid from '@assets/atomSolid.svg';
 import seedlingSolid from '@assets/seedlingSolid.svg';
 import DashBoardCard from '@components/DashBoardCard';
-import { PATH_NAME } from '@constants/services';
+import { COURSES_URL, PATH_NAME } from '@constants/services';
+import { useEffect, useState } from 'react';
+import CourseForm from './components/index';
+import api from '@services/api-request/index';
+import { TSCourse } from 'src/types/index';
 
-const CoursesPage : React.FC = () =>{
-    return(
-        <article className="dashboard-grid">
+const CoursesPage: React.FC = () => {
+  const [showPopup, setShowPopup] = useState(true);
+  const [courseData, setCourseData] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/courses/1'); // Replace with your actual endpoint
+        const data = await response.json();
+        setCourseData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle errors gracefully, e.g., display an error message to the user
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log('course:', courseData);
+
+  return (
+    <article className="dashboard-grid">
       <DashBoardCard
         to="/courses/math"
         variant="fifthly"
@@ -43,8 +66,14 @@ const CoursesPage : React.FC = () =>{
       >
         <img src={seedlingSolid} alt="seedling solid" />
       </DashBoardCard>
+
+      <CourseForm
+        isOpen={showPopup}
+        setIsOpen={setShowPopup}
+        courseDetail={courseData}
+      />
     </article>
-    );
+  );
 };
 
 export default CoursesPage;

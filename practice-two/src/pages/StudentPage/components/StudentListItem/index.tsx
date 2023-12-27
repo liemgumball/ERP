@@ -1,6 +1,5 @@
 import Button from '@components/Button';
 import { StudentInputs, TStudent } from 'src/types';
-
 import pen from '@assets/pen.svg';
 import trash from '@assets/trash.svg';
 import { formatDate } from '@services/format';
@@ -45,7 +44,7 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
   };
 
   return (
-    <li data-id={id} className="student-list-item relative group">
+    <li data-id={id} className="student-list-item group relative">
       <div>
         <img src={avatar} alt="student avatar" width={60} height={60} />
       </div>
@@ -57,16 +56,16 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
         {/* format createdAt dateString */}
         {formatDate(createdAt)}
       </p>
-      <div className="flex gap-x-2 justify-end">
+      <div className="flex justify-end gap-x-2">
         <Button
-          className="btn-remove group-hover:hover:bg-white group-hover:bg-custom-light-pink"
+          className="btn-remove group-hover:bg-custom-light-pink group-hover:hover:bg-white"
           onClick={onClickRemove}
           style={{ height: '45px' }}
         >
           <img src={trash} alt="trash" />
         </Button>
         <Button
-          className="btn-edit group-hover:hover:bg-white group-hover:bg-custom-light-pink"
+          className="btn-edit group-hover:bg-custom-light-pink group-hover:hover:bg-white"
           onClick={onClickEdit}
           style={{ height: '45px' }}
         >

@@ -20,6 +20,14 @@ export type TPayment = {
   student?: TStudent;
 };
 
+export type TSCourse = {
+  name: string;
+  id: number;
+  timeStart: string;
+  timeEnd: string;
+  numberStudents: string;
+};
+
 export type StudentInputs = Pick<
   TStudent,
   'id' | 'email' | 'name' | 'phone' | 'enrollNumber'
