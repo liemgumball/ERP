@@ -28,7 +28,7 @@ const StudentPage: React.FC = () => {
   const sortQuery = searchParams.get('sort') || '';
 
   // Get students
-  const query = `?_sort=${sortQuery}&q=${debouncedSearchQuery}`;
+  const query = `?_sort=${sortQuery}&name_like=${debouncedSearchQuery}`;
 
   const { students, isError, error, isLoading } = useStudentsQuery({
     query: query,

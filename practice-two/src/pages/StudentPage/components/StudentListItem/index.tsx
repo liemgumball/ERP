@@ -1,6 +1,5 @@
 import Button from '@components/Button';
 import { StudentInputs, TStudent } from 'src/types';
-
 import pen from '@assets/pen.svg';
 import trash from '@assets/trash.svg';
 import { formatDate } from '@services/format';

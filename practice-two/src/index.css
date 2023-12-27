@@ -58,11 +58,11 @@
 .student-list-item,
 .report-list-item,
 .payment-list-item {
-  @apply my-2 grid border rounded-xl items-center hover:bg-custom-beige font-400 transition;
+  @apply my-2 grid items-center rounded-xl border font-400 transition hover:bg-custom-beige;
 }
 
 .btn {
-  @apply border rounded-md hover:shadow-lg p-3 transition disabled:shadow-none disabled:bg-custom-dark-gray;
+  @apply rounded-md border p-3 transition hover:shadow-lg disabled:bg-custom-dark-gray disabled:shadow-none;
 }
 
 .btn-primary {
@@ -70,15 +70,15 @@
 }
 
 .login-card {
-  @apply w-1/4 min-w-max bg-white py-10 px-8 rounded-2xl shadow-lg text-black text-sm text-center flex flex-col gap-y-10 justify-between;
+  @apply flex w-1/4 min-w-max flex-col justify-between gap-y-10 rounded-2xl bg-white px-8 py-10 text-center text-sm text-black shadow-lg;
 }
 
 .sidebar {
-  @apply w-1/6 min-w-max min-h-min overflow-y-scroll bg-custom-beige py-10 px-3 flex flex-col items-stretch justify-between gap-y-2;
+  @apply flex min-h-min w-1/6 min-w-max flex-col items-stretch justify-between gap-y-2 overflow-y-scroll bg-custom-beige px-3 py-10;
 }
 
 .sidebar .nav-link {
-  @apply py-3 px-16 min-w-max rounded-lg my-3 flex items-baseline justify-stretch gap-2 transition hover:bg-custom-gray;
+  @apply my-3 flex min-w-max items-baseline justify-stretch gap-2 rounded-lg px-16 py-3 transition hover:bg-custom-gray;
 }
 
 .sidebar .nav-link.active {
@@ -86,11 +86,11 @@
 }
 
 .dashboard-grid {
-  @apply p-8 h-auto grid xl:grid-cols-4 gap-8 items-stretch lg:grid-cols-2 grid-cols-1;
+  @apply grid h-auto grid-cols-1 items-stretch gap-8 p-8 lg:grid-cols-2 xl:grid-cols-4;
 }
 
 .dashboard-card {
-  @apply block p-10 cursor-pointer rounded-lg hover:shadow-2xl hover:shadow-zinc-300 border transition duration-300 delay-75 overflow-hidden;
+  @apply block cursor-pointer overflow-hidden rounded-lg border p-10 transition delay-75 duration-300 hover:shadow-2xl hover:shadow-zinc-300;
 }
 
 .dashboard-card-primary {
@@ -109,12 +109,28 @@
   @apply bg-custom-light-blue;
 }
 
+.dashboard-card-fifthly {
+  @apply bg-red-500;
+}
+
+.dashboard-card-sixthly {
+  @apply bg-yellow-300;
+}
+
+.dashboard-card-eighthly {
+  @apply bg-green-500;
+}
+
+.dashboard-card-seventhly {
+  @apply bg-blue-600;
+}
+
 .sort-menu {
-  @apply block z-10 absolute right-0 bg-white border rounded-lg shadow-md transition-all;
+  @apply absolute right-0 z-10 block rounded-lg border bg-white shadow-md transition-all;
 }
 
 .sort-option {
-  @apply list-none capitalize py-2 px-3 cursor-pointer w-full min-w-max rounded hover:bg-custom-beige text-sm;
+  @apply w-full min-w-max cursor-pointer list-none rounded px-3 py-2 text-sm capitalize hover:bg-custom-beige;
 }
 
 .sort-option.active {

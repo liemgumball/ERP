@@ -11,20 +11,20 @@ const PaymentPage = () => {
   const debouncedSearchQuery = useDebounce(searchParams.get('q') || '');
 
   // Get payments
-  const query = `?_expand=student&?_sort=createdAt&_order=asc&q=${debouncedSearchQuery}`;
+  const query = `?_sort=createdAt&_order=desc&name_like=${debouncedSearchQuery}`;
 
   const { payments, isError, error, isLoading } = usePaymentQuery({
     query: query,
   });
 
   return (
-    <article className="px-8 min-w-min">
-      <header className="py-3 flex justify-between items-center bg-white border-b">
+    <article className="min-w-min px-8">
+      <header className="flex items-center justify-between border-b bg-white py-3">
         <h1 className="text-3xl font-700">payments list</h1>
       </header>
       <hr />
       <div className="payments py-3">
-        <div className="payment-list-heading grid text-custom-medium-gray font-600 whitespace-nowrap">
+        <div className="payment-list-heading grid whitespace-nowrap font-600 text-custom-medium-gray">
           <span>name</span>
           <span>paid</span>
           <span>bill number</span>
@@ -41,7 +41,7 @@ const PaymentPage = () => {
                   <PaymentListItem key={item.id} payment={item} />
                 ))
               ) : (
-                <p className="text-custom-dark-gray text-center">not found</p>
+                <p className="text-center text-custom-dark-gray">not found</p>
               ),
             // eslint-disable-next-line react-hooks/exhaustive-deps
             [payments]
