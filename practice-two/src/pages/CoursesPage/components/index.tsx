@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { TSCourse } from 'src/types/index';
 
-const CourseForm: React.FC = (props: {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const CourseForm: React.FC<any> = (props: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   courseDetail: TSCourse;
