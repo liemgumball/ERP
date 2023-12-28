@@ -70,6 +70,7 @@ const SettingPage = () => {
           type="text"
           placeholder="Enter your name"
           inValid={!!errors.name}
+          value={auth?.user.name}
           {...register('name', {
             required: 'Please enter name',
             pattern: {
@@ -94,6 +95,7 @@ const SettingPage = () => {
           type="text"
           placeholder="Enter your email address"
           inValid={!!errors.email}
+          value={auth?.user.email}
           {...register('email', {
             required: 'Please enter a valid email',
             pattern: {
@@ -118,6 +120,7 @@ const SettingPage = () => {
           type="tel"
           placeholder="Enter your phone number"
           inValid={!!errors.phone}
+          value="0935487037"
           {...register('phone', {
             required: 'Please enter a valid phone number',
             pattern: {

@@ -24,7 +24,7 @@ const ReportPage = () => {
       <hr />
       <div className="reports py-3">
         <div className="report-list-heading grid whitespace-nowrap font-600 text-custom-medium-gray">
-          <span>name</span>
+          <span>student</span>
           <span>title</span>
           <span>content</span>
           <span></span>
