@@ -6,6 +6,9 @@ import DashBoardCard from '@components/DashBoardCard';
 import api from '@services/api-request';
 import { useQuery } from 'react-query';
 import List from '@components/List';
+import uuid from 'react-uuid';
+import { useContext } from 'react';
+import { AuthContext } from '@contexts/Authentication';
 
 // Assuming your subject has a 'name' property
 type Subject = {
@@ -27,6 +30,8 @@ const CoursesPage: React.FC = () => {
         `${import.meta.env.VITE_API_URL}/api/subjects/`
       )) as Subject[]
   );
+
+  const { auth } = useContext(AuthContext);
 
   type Variant =
     | 'primary'
@@ -74,6 +79,16 @@ const CoursesPage: React.FC = () => {
         ))
       ) : (
         <p className="text-center text-custom-dark-gray">Not Found</p>
+      )}
+      {auth?.user.role == 'admin' ? (
+        <DashBoardCard
+          key={uuid()}
+          name="add"
+          to={`add`}
+          variant={variants[(subjects ? subjects.length : 0) % 8]}
+        ></DashBoardCard>
+      ) : (
+        ''
       )}
     </List>
   );
