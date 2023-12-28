@@ -8,12 +8,12 @@ type TData = {
 };
 
 const CoursesList: React.FC = () => {
-  const data = useLoaderData();
+  const data = useLoaderData() as TData;
   if (data)
     return (
       <article className="min-w-min px-8">
         <header>
-          <h1 className="text-3xl font-700">{(data as TData).name}</h1>
+          <h1 className="text-3xl font-700">{data.name || 'None'}</h1>
         </header>
         <hr />
         <section className="py-3">
@@ -27,13 +27,14 @@ const CoursesList: React.FC = () => {
           </header>
 
           <List>
-            {(data as TData).courses.map((course) => (
+            {data.courses.map((course) => (
               <CourseListItem data={course}></CourseListItem>
             ))}
           </List>
         </section>
       </article>
     );
+
   return <div className="text-center text-custom-dark-gray">Not found</div>;
 };
 
