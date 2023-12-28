@@ -21,10 +21,10 @@ const router = createBrowserRouter([
             path: PATH_NAME.PAYMENTS,
             Component: lazy(() => import('@pages/PaymentPage')),
           },
-          {
-            path: PATH_NAME.REPORTS,
-            Component: lazy(() => import('@pages/ReportPage')),
-          },
+          // {
+          //   path: PATH_NAME.REPORTS,
+          //   Component: lazy(() => import('@pages/ReportPage')),
+          // },
           {
             path: PATH_NAME.SETTINGS,
             Component: lazy(() => import('@pages/SettingPage')),

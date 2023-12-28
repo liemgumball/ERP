@@ -1,6 +1,9 @@
 import List from '@components/List';
 import { useLoaderData } from 'react-router-dom';
 import CourseListItem from './CourseListItem';
+import { useQuery } from 'react-query';
+import api from '@services/api-request';
+import { useState } from 'react';
 
 type TData = {
   name: string;
@@ -8,12 +11,33 @@ type TData = {
 };
 
 const CoursesList: React.FC = () => {
+  const [joined, setJoined] = useState(false);
   const data = useLoaderData() as TData;
+
+  const { data: newData } = useQuery<TData>(
+    `course_${data.name}`,
+    async () =>
+      (await api.get(
+        `${import.meta.env.VITE_API_URL}/api/subjects/${data.name}`
+      )) as TData,
+    { placeholderData: data }
+  );
   if (data)
     return (
       <article className="min-w-min px-8">
-        <header>
+        <header className="flex justify-between">
           <h1 className="text-3xl font-700">{data.name || 'None'}</h1>
+          <label htmlFor="joined" className="p-2">
+            <input
+              type="checkbox"
+              name="joined"
+              id="joined"
+              className="mx-3"
+              checked={joined}
+              onChange={(e) => setJoined(e.target.checked)}
+            />
+            joined
+          </label>
         </header>
         <hr />
         <section className="py-3">
@@ -27,7 +51,7 @@ const CoursesList: React.FC = () => {
           </header>
 
           <List>
-            {data.courses.map((course) => (
+            {newData?.courses.map((course) => (
               <CourseListItem data={course}></CourseListItem>
             ))}
           </List>
