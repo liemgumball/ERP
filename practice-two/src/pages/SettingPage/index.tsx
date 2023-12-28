@@ -3,7 +3,6 @@ import Input from '@components/Input';
 import { ERROR_MSG } from '@constants/messages';
 import { emailRegex, nameRegex, phoneNumberRegex } from '@constants/regex';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { StudentInputs } from 'src/types';
 import { useContext } from 'react';
 import { AuthContext } from '@contexts/Authentication';
@@ -11,9 +10,7 @@ import { AuthContext } from '@contexts/Authentication';
 type FormInputs = Pick<StudentInputs, 'name' | 'email' | 'phone'>;
 
 const SettingPage = () => {
-  const navigate = useNavigate();
-
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
 
   // Hook form
   const {

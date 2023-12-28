@@ -38,7 +38,7 @@ const RegisterPage = () => {
         enroll_number: data.enrollNumber,
       });
 
-      if (auth) navigate('login', { replace: true });
+      if (auth) navigate('/login', { replace: true });
     } catch (err) {
       const errorMessage = (err as Error).message;
       alert(errorMessage);
