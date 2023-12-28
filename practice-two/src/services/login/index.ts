@@ -8,7 +8,7 @@ export const login = async (
 ): Promise<AuthType | undefined> => {
   try {
     const response = await api.post(
-      `${import.meta.env.VITE_API_URL}/login`,
+      `${import.meta.env.VITE_API_URL}/users/login/`,
       data
     );
 
