@@ -51,6 +51,12 @@ const CourseDetail = () => {
           Total Students:{' '}
           <span className="self-center text-lg">{data.students.length}</span>
         </p>
+        <p className="text-xl font-700">
+          Students:{' '}
+          {data.students.map((student) => (
+            <span className="self-center text-lg">{student.name}</span>
+          ))}
+        </p>
         <p className="text-xl font-700">Description:</p>
         <p className="rounded-lg border p-3 normal-case text-gray-500">
           {data.description || 'No description'}

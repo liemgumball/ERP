@@ -4,6 +4,7 @@ import CourseListItem from './CourseListItem';
 import { useQuery } from 'react-query';
 import api from '@services/api-request';
 import { useState } from 'react';
+import useAuth from '@hooks/useAuth';
 
 type TData = {
   name: string;
@@ -12,13 +13,16 @@ type TData = {
 
 const CoursesList: React.FC = () => {
   const [joined, setJoined] = useState(false);
+  const { auth } = useAuth();
   const data = useLoaderData() as TData;
 
   const { data: newData } = useQuery<TData>(
-    `course_${data.name}`,
+    [`course_${data.name}`, joined],
     async () =>
       (await api.get(
-        `${import.meta.env.VITE_API_URL}/api/subjects/${data.name}`
+        `${import.meta.env.VITE_API_URL}/api/subject/${data.name}/${
+          joined ? `?userId=${auth?.user.id}` : ''
+        }`
       )) as TData,
     { placeholderData: data }
   );
