@@ -1,7 +1,7 @@
 export const DATABASE_RESOURCES = {
   LOGIN: 'users/login',
   STUDENTS: 'users/students',
-  PAYMENTS: 'payments',
+  PAYMENTS: 'api/payments/',
   COURSES: 'courses',
   REPORTS: 'reports',
 };

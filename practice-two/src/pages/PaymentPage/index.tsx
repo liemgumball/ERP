@@ -25,11 +25,11 @@ const PaymentPage = () => {
       <hr />
       <div className="payments py-3">
         <div className="payment-list-heading grid whitespace-nowrap font-600 text-custom-medium-gray">
-          <span>name</span>
+          <span>id</span>
+          <span>student</span>
+          <span>course</span>
           <span>paid</span>
-          <span>bill number</span>
-          <span>amount paid</span>
-          <span>balance amount</span>
+          <span>amount</span>
           <span>date</span>
           <span></span>
         </div>

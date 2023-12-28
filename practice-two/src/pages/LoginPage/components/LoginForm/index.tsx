@@ -4,7 +4,7 @@ import { login } from '@services/login';
 import Button from '@components/Button';
 import Input from '@components/Input';
 import { AuthContext } from '@contexts/Authentication';
-import { emailRegex, passwordRegex } from '@constants/regex';
+import { emailRegex } from '@constants/regex';
 import { ERROR_MSG } from '@constants/messages';
 
 export type LoginInputs = {
@@ -44,7 +44,7 @@ const LoginForm: React.FC = () => {
       className="flex flex-col text-left"
       onSubmit={handleSubmit(onValid)}
     >
-      <label className="text-custom-dark-gray capitalize" htmlFor="email">
+      <label className="capitalize text-custom-dark-gray" htmlFor="email">
         email
       </label>
       <Input
@@ -63,7 +63,7 @@ const LoginForm: React.FC = () => {
       />
       {errors.email && (
         <p
-          className="text-red-500 text-xs transition duration-500"
+          className="text-xs text-red-500 transition duration-500"
           role="alert"
         >
           {errors.email.message}
@@ -71,7 +71,7 @@ const LoginForm: React.FC = () => {
       )}
 
       <label
-        className="text-custom-dark-gray mt-10 capitalize"
+        className="mt-10 capitalize text-custom-dark-gray"
         htmlFor="password"
       >
         password
@@ -83,15 +83,11 @@ const LoginForm: React.FC = () => {
         inValid={!!errors.password}
         {...register('password', {
           required: 'Password is required',
-          pattern: {
-            value: passwordRegex,
-            message: ERROR_MSG.INVALID_PASSWORD,
-          },
         })}
       />
       {errors.password && (
         <p
-          className="text-red-500 text-xs transition duration-500"
+          className="text-xs text-red-500 transition duration-500"
           role="alert"
         >
           {errors.password.message}
@@ -101,7 +97,7 @@ const LoginForm: React.FC = () => {
       <Button
         primary
         type="submit"
-        className="text-white uppercase text-700 mt-8"
+        className="text-700 mt-8 uppercase text-white"
         disabled={(!isValid && isSubmitted) || isSubmitting}
       >
         {isSubmitting ? 'Loading...' : 'sign in'}
