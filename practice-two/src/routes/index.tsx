@@ -31,8 +31,12 @@ const router = createBrowserRouter([
           },
           {
             path: PATH_NAME.COURSES,
-            Component: lazy(()=> import('@pages/CoursesPage'))
-          }
+            Component: lazy(() => import('@pages/CoursesPage')),
+          },
+          {
+            path: PATH_NAME.SETTINGS,
+            Component: lazy(() => import('@pages/SettingPage')),
+          },
         ],
       },
     ],
