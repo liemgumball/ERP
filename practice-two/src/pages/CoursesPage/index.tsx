@@ -6,9 +6,10 @@ import DashBoardCard from '@components/DashBoardCard';
 import api from '@services/api-request';
 import { useQuery } from 'react-query';
 import List from '@components/List';
-import uuid from 'react-uuid';
 import { useContext } from 'react';
 import { AuthContext } from '@contexts/Authentication';
+import Button from '@components/Button';
+import { Link } from 'react-router-dom';
 
 // Assuming your subject has a 'name' property
 type Subject = {
@@ -59,8 +60,14 @@ const CoursesPage: React.FC = () => {
 
   return (
     <article className="min-w-min px-8">
-      <header>
+      <header className="mb-3 flex justify-between px-5">
         <h1 className="text-3xl font-700">Courses</h1>
+
+        <Button name="add" primary disabled={auth?.user.role !== 'admin'}>
+          <Link className="uppercase" to="add">
+            Add new course
+          </Link>
+        </Button>
       </header>
       <hr />
       <List
@@ -74,7 +81,7 @@ const CoursesPage: React.FC = () => {
             <DashBoardCard
               key={subject.id}
               name={subject.name}
-              to={`${subject.id}`}
+              to={`${subject.name}`}
               variant={variants[index % 8]}
               mainInfo={subject.course_length.toString()}
             >
@@ -86,16 +93,6 @@ const CoursesPage: React.FC = () => {
           ))
         ) : (
           <p className="text-center text-custom-dark-gray">Not Found</p>
-        )}
-        {auth?.user.role == 'admin' ? (
-          <DashBoardCard
-            key={uuid()}
-            name="add"
-            to={`add`}
-            variant={variants[(subjects ? subjects.length : 0) % 8]}
-          ></DashBoardCard>
-        ) : (
-          ''
         )}
       </List>
     </article>
