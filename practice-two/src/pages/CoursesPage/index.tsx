@@ -3,76 +3,76 @@ import flaskSolid from '@assets/flaskSolid.svg';
 import atomSolid from '@assets/atomSolid.svg';
 import seedlingSolid from '@assets/seedlingSolid.svg';
 import DashBoardCard from '@components/DashBoardCard';
-import { COURSES_URL, PATH_NAME } from '@constants/services';
-import { useEffect, useState } from 'react';
-import CourseForm from './components/index';
-import api from '@services/api-request/index';
-import { TSCourse } from 'src/types/index';
+import api from '@services/api-request';
+import { useQuery } from 'react-query';
+import List from '@components/List';
+
+// Assuming your subject has a 'name' property
+type Subject = {
+  id: number;
+  name: string;
+  // Add more properties if your subject has them
+};
 
 const CoursesPage: React.FC = () => {
-  const [showPopup, setShowPopup] = useState(true);
-  const [courseData, setCourseData] = useState('');
+  const {
+    data: subjects,
+    isError,
+    error,
+    isLoading,
+  } = useQuery<Subject[], Error>(
+    'subjects',
+    async () =>
+      (await api.get(
+        `${import.meta.env.VITE_API_URL}/api/subjects/`
+      )) as Subject[]
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/courses/1'); // Replace with your actual endpoint
-        const data = await response.json();
-        setCourseData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle errors gracefully, e.g., display an error message to the user
-      }
-    };
-    fetchData();
-  }, []);
+  type Variant =
+    | 'primary'
+    | 'secondary'
+    | 'thirdly'
+    | 'fourthly'
+    | 'fifthly'
+    | 'sixthly'
+    | 'seventhly'
+    | 'eighthly';
 
-  console.log('course:', courseData);
+  const variants: Variant[] = [
+    'primary',
+    'secondary',
+    'thirdly',
+    'fourthly',
+    'fifthly',
+    'sixthly',
+    'seventhly',
+    'eighthly',
+  ];
+
+  const icons = [calculatorSolid, flaskSolid, atomSolid, seedlingSolid];
 
   return (
-    <article className="dashboard-grid">
-      <DashBoardCard
-        to="/courses/math"
-        variant="fifthly"
-        name="math"
-        mainInfo="43"
-      >
-        <img src={calculatorSolid} alt="calculator solid" />
-      </DashBoardCard>
-
-      <DashBoardCard
-        to="/courses/physics"
-        variant="sixthly"
-        name="physics"
-        mainInfo="56"
-      >
-        <img src={atomSolid} alt="atom solid" />
-      </DashBoardCard>
-
-      <DashBoardCard
-        to="/courses/chemistry"
-        variant="seventhly"
-        name="chemistry"
-        mainInfo="32"
-      >
-        <img src={flaskSolid} alt="flask solid" />
-      </DashBoardCard>
-
-      <DashBoardCard
-        to="/courses/biology"
-        variant="eighthly"
-        name="biology"
-        mainInfo="21"
-      >
-        <img src={seedlingSolid} alt="seedling solid" />
-      </DashBoardCard>
-
-      <CourseForm
-        isOpen={showPopup}
-        setIsOpen={setShowPopup}
-        courseDetail={courseData}
-      />
-    </article>
+    <List
+      className="dashboard-grid"
+      isLoading={isLoading}
+      isError={isError}
+      error={error as Error}
+    >
+      {subjects &&
+        subjects.map((subject, index) => (
+          <DashBoardCard
+            key={subject.id}
+            name={subject.name}
+            to={`${subject.name}`}
+            variant={variants[index % 8]}
+          >
+            <img
+              src={icons[Math.floor(Math.random() * icons.length)]}
+              alt="icon"
+            />
+          </DashBoardCard>
+        ))}
+    </List>
   );
 };
 

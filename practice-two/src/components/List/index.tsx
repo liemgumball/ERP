@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 
 export type ListProps = {
+  className?: string;
   isError?: boolean;
   error?: Error;
   isLoading?: boolean;
@@ -9,12 +10,12 @@ export type ListProps = {
 };
 
 const List: React.FC<ListProps> = (props) => {
-  const { isError, error, isLoading, onClick, children } = props;
+  const { isError, error, isLoading, onClick, children, className } = props;
 
   // loading
   if (isLoading)
     return (
-      <p className="text-custom-dark-gray text-center animate-bounce">
+      <p className="animate-bounce text-center text-custom-dark-gray">
         Loading...
       </p>
     );
@@ -22,13 +23,17 @@ const List: React.FC<ListProps> = (props) => {
   // show error
   if (isError)
     return (
-      <p role="alert" className="text-red-500 text-center font-600">
+      <p role="alert" className="text-center font-600 text-red-500">
         {error?.message || 'Unexpected error'}
       </p>
     );
 
   // fetch successfully
-  return <ul onClick={onClick}>{children}</ul>;
+  return (
+    <ul className={className} onClick={onClick}>
+      {children}
+    </ul>
+  );
 };
 
 export default List;

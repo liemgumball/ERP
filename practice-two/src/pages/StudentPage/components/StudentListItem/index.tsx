@@ -51,7 +51,12 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
   return (
     <li data-id={id} className="student-list-item group relative">
       <div>
-        <img src={avatar} alt="student avatar" width={60} height={60} />
+        <img
+          src={avatar || 'https://loremflickr.com/60/60'}
+          alt="student avatar"
+          width={60}
+          height={60}
+        />
       </div>
       <p className="truncate">{name}</p>
       <p className="truncate normal-case">{email}</p>

@@ -4,6 +4,7 @@ import uuid from 'react-uuid';
 import eye from '@assets/eye.svg';
 
 type PaymentListItemProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payment: any;
 };
 
@@ -12,6 +13,7 @@ const PaymentListItem = ({ payment }: PaymentListItemProps) => {
 
   const viewDetailClick = async () => {
     const endpoint = `${import.meta.env.VITE_API_URL}/payments/payment/`;
+
     const requestBody = {
       order_id: uuid(),
       order_type: 'pay',
