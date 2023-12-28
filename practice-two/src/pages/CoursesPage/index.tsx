@@ -68,7 +68,7 @@ const CoursesPage: React.FC = () => {
           <DashBoardCard
             key={subject.id}
             name={subject.name}
-            to={`${subject.name}`}
+            to={`${subject.id}`}
             variant={variants[index % 8]}
           >
             <img
