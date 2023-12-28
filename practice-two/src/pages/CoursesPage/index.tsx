@@ -14,6 +14,7 @@ import { AuthContext } from '@contexts/Authentication';
 type Subject = {
   id: number;
   name: string;
+  course_length: number;
   // Add more properties if your subject has them
 };
 
@@ -57,40 +58,47 @@ const CoursesPage: React.FC = () => {
   const icons = [calculatorSolid, flaskSolid, atomSolid, seedlingSolid];
 
   return (
-    <List
-      className="dashboard-grid"
-      isLoading={isLoading}
-      isError={isError}
-      error={error as Error}
-    >
-      {subjects ? (
-        subjects.map((subject, index) => (
+    <article className="min-w-min px-8">
+      <header>
+        <h1 className="text-3xl font-700">Courses</h1>
+      </header>
+      <hr />
+      <List
+        className="dashboard-grid"
+        isLoading={isLoading}
+        isError={isError}
+        error={error as Error}
+      >
+        {subjects ? (
+          subjects.map((subject, index) => (
+            <DashBoardCard
+              key={subject.id}
+              name={subject.name}
+              to={`${subject.id}`}
+              variant={variants[index % 8]}
+              mainInfo={subject.course_length.toString()}
+            >
+              <img
+                src={icons[Math.floor(Math.random() * icons.length)]}
+                alt="icon"
+              />
+            </DashBoardCard>
+          ))
+        ) : (
+          <p className="text-center text-custom-dark-gray">Not Found</p>
+        )}
+        {auth?.user.role == 'admin' ? (
           <DashBoardCard
-            key={subject.id}
-            name={subject.name}
-            to={`${subject.id}`}
-            variant={variants[index % 8]}
-          >
-            <img
-              src={icons[Math.floor(Math.random() * icons.length)]}
-              alt="icon"
-            />
-          </DashBoardCard>
-        ))
-      ) : (
-        <p className="text-center text-custom-dark-gray">Not Found</p>
-      )}
-      {auth?.user.role == 'admin' ? (
-        <DashBoardCard
-          key={uuid()}
-          name="add"
-          to={`add`}
-          variant={variants[(subjects ? subjects.length : 0) % 8]}
-        ></DashBoardCard>
-      ) : (
-        ''
-      )}
-    </List>
+            key={uuid()}
+            name="add"
+            to={`add`}
+            variant={variants[(subjects ? subjects.length : 0) % 8]}
+          ></DashBoardCard>
+        ) : (
+          ''
+        )}
+      </List>
+    </article>
   );
 };
 
