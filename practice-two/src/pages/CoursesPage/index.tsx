@@ -58,7 +58,7 @@ const CoursesPage: React.FC = () => {
       isError={isError}
       error={error as Error}
     >
-      {subjects &&
+      {subjects ? (
         subjects.map((subject, index) => (
           <DashBoardCard
             key={subject.id}
@@ -71,7 +71,10 @@ const CoursesPage: React.FC = () => {
               alt="icon"
             />
           </DashBoardCard>
-        ))}
+        ))
+      ) : (
+        <p className="text-center text-custom-dark-gray">Not Found</p>
+      )}
     </List>
   );
 };
