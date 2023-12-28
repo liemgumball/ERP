@@ -1,8 +1,7 @@
 import Button from '@components/Button';
 import { formatDate, formatAmount } from '@services/format';
+import uuid from 'react-uuid';
 import eye from '@assets/eye.svg';
-import { NOTIFIES_MSG } from '@constants/messages';
-import { useNavigate } from 'react-router-dom';
 
 type PaymentListItemProps = {
   payment: any;
@@ -11,17 +10,13 @@ type PaymentListItemProps = {
 const PaymentListItem = ({ payment }: PaymentListItemProps) => {
   const { id, student, course, paid, amount, paid_at } = payment;
 
-  const navigate = useNavigate();
-
-  console.log(payment);
-
   const viewDetailClick = async () => {
     const endpoint = `${import.meta.env.VITE_API_URL}/payments/payment/`;
     const requestBody = {
-      order_id: id.toString(),
+      order_id: uuid(),
       order_type: 'pay',
       amount: amount,
-      order_desc: `${student.name} thanh toan hoc phi mon hoc ${course.name}`,
+      order_desc: id.toString(),
       bank_code: 'NCB',
       language: 'vn',
     };
@@ -54,6 +49,7 @@ const PaymentListItem = ({ payment }: PaymentListItemProps) => {
       <p className="truncate uppercase">{formatDate(paid_at)}</p>
       <div className="action-group flex justify-end gap-x-2">
         <Button
+          disabled={paid}
           className="view-details-btn group-hover:bg-custom-light-pink group-hover:hover:bg-white"
           onClick={viewDetailClick}
         >
