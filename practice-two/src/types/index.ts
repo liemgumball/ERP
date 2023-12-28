@@ -38,6 +38,18 @@ export type TReport = {
   student?: TStudent;
 };
 
+export type TCourse = {
+  id: number;
+  name: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  schedule: string;
+  students: TStudent[];
+  subject: { id: number; name: string };
+  video: string;
+};
+
 export type StudentInputs = Pick<
   TStudent,
   'id' | 'email' | 'name' | 'phone' | 'enrollNumber' | 'useId'

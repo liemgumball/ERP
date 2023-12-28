@@ -1,9 +1,11 @@
 import Input from '@components/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import Button from '@components/Button';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
 
@@ -20,7 +22,16 @@ const Header = () => {
   if (searchQuery.length > 50) throw new Error('Search query length error');
 
   return (
-    <header className="flex justify-end gx-3 py-5 px-8">
+    <header className="gx-3 flex justify-between px-8 py-5">
+      <Button
+        className={`${
+          window.location.pathname === '/' ? 'invisible' : ''
+        } text-xs`}
+        onClick={() => navigate(-1)}
+      >
+        Back{' '}
+      </Button>
+
       <div className="relative w-1/6 min-w-fit">
         <Input
           className="w-full pr-12"
@@ -35,7 +46,7 @@ const Header = () => {
         />
         <FontAwesomeIcon
           icon={faSearch}
-          className="text-custom-gray absolute right-5 top-1/2 transform -translate-y-1/2"
+          className="absolute right-5 top-1/2 -translate-y-1/2 transform text-custom-gray"
         />
       </div>
     </header>
