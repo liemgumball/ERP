@@ -10,7 +10,7 @@ import { AuthContext } from '@contexts/Authentication';
 type FormInputs = Pick<StudentInputs, 'name' | 'email' | 'phone'>;
 
 const SettingPage = () => {
-  const { auth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
 
   // Hook form
   const {
@@ -22,31 +22,44 @@ const SettingPage = () => {
   const onSubmit = async (data: FormInputs) => {
     console.log(data);
 
+    const user = auth!;
+
+    user.user.name = data.name;
+    user.user.email = data.email;
+
     try {
       // Assuming you have a user ID, replace 'USER_ID' with the actual user ID
       const userId = auth?.user.id;
+      const token = auth?.accessToken;
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      });
+
+      console.log(token);
 
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/users/update/${userId}/`,
         {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: headers,
           body: JSON.stringify(data),
         }
       );
 
       if (response.ok) {
         alert('Updated your Information');
+        console.log(user);
+        setAuth(user);
+        console.log('auth', auth);
       } else {
         // Handle errors from the server
         const errorData = await response.json();
-        alert(`Error:, ${errorData}`);
+        alert(`Error: Failed to update`);
       }
     } catch (error) {
       // Handle network or other errors
-      alert(`Error:, ${error}`);
+      alert(`Error: Failed to update`);
     }
   };
 
@@ -65,12 +78,11 @@ const SettingPage = () => {
           Name{' '}
         </label>
         <Input
-          autoFocus
           id="name"
           type="text"
           placeholder="Enter your name"
           inValid={!!errors.name}
-          value={auth?.user.name}
+          defaultValue={auth?.user.name}
           {...register('name', {
             required: 'Please enter name',
             pattern: {
@@ -95,7 +107,7 @@ const SettingPage = () => {
           type="text"
           placeholder="Enter your email address"
           inValid={!!errors.email}
-          value={auth?.user.email}
+          defaultValue={auth?.user.email}
           {...register('email', {
             required: 'Please enter a valid email',
             pattern: {
@@ -120,7 +132,7 @@ const SettingPage = () => {
           type="tel"
           placeholder="Enter your phone number"
           inValid={!!errors.phone}
-          value="0935487037"
+          defaultValue="0935487037"
           {...register('phone', {
             required: 'Please enter a valid phone number',
             pattern: {

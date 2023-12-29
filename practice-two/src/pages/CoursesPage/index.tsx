@@ -74,7 +74,7 @@ const CoursesPage: React.FC = () => {
             <DashBoardCard
               key={subject.id}
               name={subject.name}
-              to={`${subject.id}`}
+              to={`${subject.name}`}
               variant={variants[index % 8]}
               mainInfo={subject.course_length.toString()}
             >

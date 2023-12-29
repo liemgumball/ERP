@@ -45,14 +45,19 @@ const CourseListItem = (props: any) => {
       <p className="truncate">{end_date}</p>
       <p className="truncate">{schedule}</p>
       <div className="action-group flex justify-end gap-x-2">
-        <Link to={``}>
-          <Button
-            onClick={handleEnrollment}
-            className="view-details-btn group-hover:bg-custom-light-pink group-hover:hover:bg-white"
-          >
-            <img src={pen} alt="pen" loading="eager" />
-          </Button>
-        </Link>
+        {auth?.user.role !== 'admin' ? (
+          <Link to={``}>
+            <Button
+              onClick={handleEnrollment}
+              className="view-details-btn group-hover:bg-custom-light-pink group-hover:hover:bg-white"
+            >
+              <img src={pen} alt="pen" loading="eager" />
+            </Button>
+          </Link>
+        ) : (
+          ''
+        )}
+
         <Link to={`${id}`}>
           <Button className="view-details-btn group-hover:bg-custom-light-pink group-hover:hover:bg-white">
             <img src={eye} alt="eye" loading="eager" />

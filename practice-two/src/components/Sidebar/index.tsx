@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo, useReducer } from 'react';
 import { Link, NavLink, To } from 'react-router-dom';
 import { PATH_NAME } from '@constants/services';
 import { AuthContext } from '@contexts/Authentication';
@@ -53,6 +53,8 @@ const NavList: { to: To; imgSrc?: string; alt?: string; innerText: string }[] =
 const Sidebar: React.FC = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
+  const user = useMemo(() => auth, [auth]);
+
   const handleLogout = () => setAuth(null);
 
   return (
@@ -71,7 +73,7 @@ const Sidebar: React.FC = () => {
             className="h-full w-full rounded-full"
           />
         </div>
-        <h2 className="text-xl font-700">{auth?.user.name}</h2>
+        <h2 className="text-xl font-700">{user?.user.name}</h2>
         <p className="text-custom-yellow">{auth?.user.role || 'user'}</p>
       </div>
       <nav className="p-5">
