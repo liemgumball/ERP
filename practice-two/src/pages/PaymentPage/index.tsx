@@ -11,7 +11,7 @@ const PaymentPage = () => {
   const debouncedSearchQuery = useDebounce(searchParams.get('q') || '');
 
   // Get payments
-  const query = `?_sort=createdAt&_order=desc&name_like=${debouncedSearchQuery}`;
+  const query = `?_sort=createdAt&_order=desc&student_name_like=${debouncedSearchQuery}`;
 
   const { payments, isError, error, isLoading } = usePaymentQuery({
     query: query,
