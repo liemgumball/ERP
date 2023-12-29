@@ -9,7 +9,7 @@ Welcome to the ERP project! Our dedicated team of developers and business analys
 ### Developers
 
 - **Liem Nguyen:** Lead Developer
-- **Hoang Ngo:** Senior Developer
+- **Hoang Ngo:** Developer
 - **Le Hoang:** Developer
 - **Lan Anh:** Developer
 
