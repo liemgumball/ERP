@@ -32,9 +32,8 @@ export type TSCourse = {
 export type TReport = {
   id: number;
   title: string;
-  content: string;
-  userId: number;
-  studentId: number;
+  description: string;
+  created_at: string;
   student?: TStudent;
 };
 

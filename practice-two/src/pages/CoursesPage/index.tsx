@@ -59,7 +59,7 @@ const CoursesPage: React.FC = () => {
   const icons = [calculatorSolid, flaskSolid, atomSolid, seedlingSolid];
 
   return (
-    <article className="min-w-min px-8">
+    <article className="min-w-min px-8 pt-3">
       <header className="mb-3 flex justify-between px-5">
         <h1 className="text-3xl font-700">Courses</h1>
 
@@ -71,7 +71,7 @@ const CoursesPage: React.FC = () => {
       </header>
       <hr />
       <List
-        className="dashboard-grid"
+        className="dashboard-grid mt-5"
         isLoading={isLoading}
         isError={isError}
         error={error as Error}
