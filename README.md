@@ -1,4 +1,4 @@
-# ERP
+# ERP FrontEnd
 
 ## Project Overview:
 
