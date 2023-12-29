@@ -3,7 +3,7 @@ export const DATABASE_RESOURCES = {
   STUDENTS: 'users/students',
   PAYMENTS: 'api/payments/',
   COURSES: 'courses',
-  REPORTS: 'reports',
+  REPORTS: 'api/reports/',
 };
 
 export const PATH_NAME = {
