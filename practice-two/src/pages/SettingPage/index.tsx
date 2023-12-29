@@ -5,7 +5,7 @@ import { emailRegex, nameRegex, phoneNumberRegex } from '@constants/regex';
 import { useForm } from 'react-hook-form';
 import { StudentInputs } from 'src/types';
 import { useContext } from 'react';
-import { AuthContext } from '@contexts/Authentication';
+import { AuthContext, AuthType } from '@contexts/Authentication';
 
 type FormInputs = Pick<StudentInputs, 'name' | 'email' | 'phone'>;
 
@@ -52,6 +52,15 @@ const SettingPage = () => {
         console.log(user);
         setAuth(user);
         console.log('auth', auth);
+        const newdata = await response.json();
+        console.log(newdata);
+        if (newdata.user)
+          setAuth((current) => {
+            return {
+              ...current,
+              user: newdata.user,
+            } as AuthType;
+          });
       } else {
         // Handle errors from the server
         const errorData = await response.json();

@@ -59,8 +59,8 @@ const CourseListItem = (props: any) => {
         )}
 
         <Link to={`${id}`}>
-          <Button className="view-details-btn group-hover:bg-custom-light-pink group-hover:hover:bg-white">
-            <img src={eye} alt="eye" loading="eager" />
+          <Button className="view-details-btn h-full group-hover:bg-custom-light-pink group-hover:hover:bg-white">
+            <img src={eye} alt="eye" loading="eager" width={19} height={19} />
           </Button>
         </Link>
       </div>

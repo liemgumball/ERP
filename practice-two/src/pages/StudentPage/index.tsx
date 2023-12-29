@@ -6,17 +6,17 @@ import useStudentForm from './hooks/useStudentForm';
 import useStudentsQuery from './hooks/useStudentQuery';
 
 //components
-import Button from '@components/Button';
+// import Button from '@components/Button';
 import List from '@components/List';
 import SortMenu from '@components/SortMenu';
 import SortOption from '@components/SortOption';
 import StudentListItem from './components/StudentListItem';
 import StudentForm from './components/StudentForm';
 import { useSearchParams } from 'react-router-dom';
-import useAuth from '@hooks/useAuth';
+// import useAuth from '@hooks/useAuth';
 
 const StudentPage: React.FC = () => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
 
   // Student form reducer
   const [formState, dispatch] = useStudentForm();
@@ -59,14 +59,14 @@ const StudentPage: React.FC = () => {
                 date of admission
               </SortOption>
             </SortMenu>
-            <Button
+            {/* <Button
               className="uppercase"
               primary
               disabled={auth?.user.role !== 'admin'}
               onClick={() => dispatch({ status: 'adding' })}
             >
               add new student
-            </Button>
+            </Button> */}
           </span>
         </header>
 
