@@ -21,7 +21,7 @@ const CourseDetail = () => {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/courses/${data.id}/auto-create-payment/`,
+        `${import.meta.env.VITE_API_URL}/api/courses/${data.id}/auto-create-payment/`,
         {
           method: 'POST',
           headers: {

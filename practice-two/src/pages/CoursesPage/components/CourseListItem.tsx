@@ -12,16 +12,19 @@ const CourseListItem = (props: any) => {
 
   const handleEnrollment = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/enroll-course/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          student_id: auth?.user.id,
-          course_id: id,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/enroll-course/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            student_id: auth?.user.id,
+            course_id: id,
+          }),
+        }
+      );
 
       const data = await response.json();
 
